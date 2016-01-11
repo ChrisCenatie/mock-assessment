@@ -11,7 +11,6 @@ class UnauthenticatedUserUnsuccessfulLoginTest < ActionDispatch::IntegrationTest
 
     fill_in "Email", with: user.email
     fill_in "Password", with: "passwor"
-    fill_in "Confirmation", with: "passwor"
     click_button "Login"
 
     assert_equal "/login", current_path
@@ -26,22 +25,6 @@ class UnauthenticatedUserUnsuccessfulLoginTest < ActionDispatch::IntegrationTest
 
     fill_in "Email", with: "wrongemail@example.com"
     fill_in "Password", with: "password"
-    fill_in "Confirmation", with: "password"
-    click_button "Login"
-
-    assert_equal "/login", current_path
-  end
-
-  test "unauthenticated user is redirected to login page if confirmation and password don't match" do
-    skip
-    user = User.create(email: "chris@example.com", password: "password")
-    visit root_path
-
-    assert_equal "/login", current_path
-
-    fill_in "Email", with: "wrong.email@example.com"
-    fill_in "Password", with: "password"
-    fill_in "Confirmation", with: "passwor"
     click_button "Login"
 
     assert_equal "/login", current_path

@@ -6,6 +6,7 @@ class UserSignsUpTest < ActionDispatch::IntegrationTest
     visit '/users/new'
     fill_in "Email", with: "test@example.com"
     fill_in "Password", with: "password"
+    fill_in "Confirmation", with: "password"
     click_button "Create Account"
 
     assert_equal links_path, current_path
@@ -17,6 +18,7 @@ class UserSignsUpTest < ActionDispatch::IntegrationTest
 
     fill_in "Email", with: "test@example.com"
     fill_in "Password", with: "password"
+    fill_in "Confirmation", with: "password"
     click_button "Create Account"
 
     assert_equal '/users', current_path
@@ -31,5 +33,17 @@ class UserSignsUpTest < ActionDispatch::IntegrationTest
 
     assert_equal '/users', current_path
     assert page.has_content?("Password can't be blank")
+  end
+
+  test "User password and confirmation does not match" do
+    visit '/users/new'
+
+    fill_in "Email", with: "test@example.com"
+    fill_in "Password", with: "password1"
+    fill_in "Confirmation", with: "password"
+    click_button "Create Account"
+
+    assert_equal '/users', current_path
+    assert page.has_content?("Confirmation does not match password")
   end
 end
