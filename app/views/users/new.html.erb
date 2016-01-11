@@ -1,0 +1,16 @@
+<% if flash[:errors] %>
+  <% flash[:errors].each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+<h1>Create a new account</h1>
+
+<%= form_for(:user, url: users_path) do |f| %>
+  <%= f.label :email %>
+  <%= f.text_field :email %> <br>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %> <br>
+
+  <%= f.submit "Create Account" %>
+<% end %>

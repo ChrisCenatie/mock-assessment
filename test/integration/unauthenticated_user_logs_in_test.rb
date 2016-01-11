@@ -3,6 +3,7 @@ require 'test_helper'
 class UnauthenticatedUserLogsInTest < ActionDispatch::IntegrationTest
 
   test "unauthenticated user is redirected to login page and logs in" do
+    skip
     user = User.create(email: "chris@example.com", password: "password")
     visit '/'
 
