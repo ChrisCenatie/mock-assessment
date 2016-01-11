@@ -13,8 +13,14 @@ gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
   gem 'pry'
+  gem 'launchy'
 end
 
 group :development do
   gem 'web-console', '~> 2.0'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'database_cleaner'
 end
