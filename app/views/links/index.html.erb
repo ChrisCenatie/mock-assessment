@@ -1,1 +1,34 @@
+<% if flash[:errors] %>
+  <% flash[:errors].each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
 <%= link_to "Sign Out", logout_path, method: :delete %>
+
+<h2>Add A New Link</h2>
+<%= form_for :link, url: '/links' do |f| %>
+  <%= f.label :url %>:
+  <%= f.text_field :url %><br />
+
+  <%= f.label :title %>:
+  <%= f.text_field :title %><br />
+
+  <%= f.submit "Create Link"%>
+<% end %>
+
+<% unless @links.nil? %>
+  <% @links.each do |link| %>
+    <div id="link<%= link.id %>">
+      <h3><%= link.title %><h3>
+      <h5><%= link.url %></h5>
+      <h5>Mark As Read
+        <% if link.read_status %>
+          <input checked="true" type="checkbox" value="true" />
+        <% else %>
+          <input type="checkbox" value="false" />
+        <% end %>
+      </h5>
+    </div>
+  <% end %>
+<% end %>
