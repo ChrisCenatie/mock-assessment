@@ -2,15 +2,22 @@
 
 <h1>Login</h1>
 <% if flash[:errors] %>
+<div class="errors">
   <%= flash[:errors] %>
+</div>
 <% end %>
 
 <%= form_for(:session, url: login_path) do |f| %>
+<div class="form-inline">
+  <div class="form-group">
   <%= f.label :email %>
   <%= f.text_field :email %> <br>
+  </div>
 
+  <div class="form-group">
   <%= f.label :password %>
   <%= f.password_field :password %> <br>
-
+  </div>
+</div>
   <%= f.submit "Login" %>
 <% end %>

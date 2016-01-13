@@ -14,7 +14,7 @@ class UserCreatesLinkTest < ActionDispatch::IntegrationTest
     click_button "Create Link"
 
     assert_equal links_path, current_path
-    within("#link1") do
+    within(".link1") do
        assert page.has_content?("https://google.com")
        assert page.has_content?("My Search Page")
     end

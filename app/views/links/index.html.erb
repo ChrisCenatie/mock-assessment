@@ -19,14 +19,14 @@
 
 <% unless @links.nil? %>
   <% @links.each do |link| %>
-    <div id="link<%= link.id %>">
-      <h3><%= link.title %><h3>
-      <h5><%= link.url %></h5>
+    <div class="link<%= link.id %>">
+      <h3 class="link-title"><%= link.title %><h3>
+      <h5 class="link-url"><%= link.url %></h5>
       <h5>Mark As Read
         <% if link.read_status %>
-          <input checked="true" type="checkbox" value="true" />
+          <input checked="true" class="status-read" type="checkbox" value="read">
         <% else %>
-          <input type="checkbox" value="false" />
+          <input type="checkbox" class="status-unread" value="false">
         <% end %>
       </h5>
     </div>

@@ -1,22 +1,30 @@
-<% if flash[:errors] %>
-  <% flash[:errors].each do |message| %>
-    <%= message %>
-  <% end %>
-<% end %>
-
 <%= link_to "Login", login_path %>
 
 <h1>Create a new account</h1>
 
+<% if flash[:errors] %>
+  <div class="errors">
+  <% flash[:errors].each do |message| %>
+    <%= message %>
+  <% end %>
+  </div>
+<% end %>
+
 <%= form_for(:user, url: users_path) do |f| %>
-  <%= f.label :email %>
-  <%= f.text_field :email %> <br>
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.text_field :email %> <br>
+  </div>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %> <br>
+  <div class="form-group">
+    <%= f.label :password %>
+    <%= f.password_field :password %> <br>
+  </div>
 
-  <%= f.label :confirmation %>
-  <%= f.password_field :confirmation %> <br>
+  <div class="form-group">
+    <%= f.label :confirmation %>
+    <%= f.password_field :confirmation %> <br>
+  </div>
 
   <%= f.submit "Create Account" %>
 <% end %>
