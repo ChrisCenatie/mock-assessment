@@ -1,0 +1,32 @@
+<div class="well">
+  <div class="btn btn-default btn-sm active" role="button">
+    <%= link_to "Sign Out", logout_path, method: :delete %>
+  </div>
+  <div class="btn btn-default btn-sm active" role="button">
+    <%= link_to "Index", links_path %>
+  </div>
+
+  <h2>Add A New Link</h2>
+  <% if flash[:errors] %>
+    <div class="errors">
+      <% flash[:errors].each do |message| %>
+        <%= message %>
+      <% end %>
+    </div>
+  <% end %>
+  <%= form_for @link, method: "PUT" do |f| %>
+    <div class="form-inline">
+      <div class="form-group">
+        <%= f.label :url %>:
+        <%= f.text_field :url %><br />
+      </div>
+
+      <div class="form-group">
+        <%= f.label :title %>:
+        <%= f.text_field :title %><br />
+      </div>
+
+      <%= f.submit "Update Link"%>
+    </div>
+  <% end %>
+</div>
