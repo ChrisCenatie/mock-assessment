@@ -3,7 +3,7 @@ $(document).ready(function() {
 })
 
 function updateLink() {
-  var linkId = this.parentNode.className.split("link")[1];
+  var linkId = this.parentNode.id.split("link")[1];
   var updateStatus = this.value;
 
   $.ajax({
@@ -12,10 +12,12 @@ function updateLink() {
     data: {link: {read_status: updateStatus}},
     success: function() {
       if (updateStatus === "Read") {
+        this.parentElement.className = "Read";
         this.value = "Unread";
         $(this).html("Mark as Unread");
       }
       if (updateStatus === "Unread") {
+        this.parentElement.className = "Unread";
         this.value = "Read";
         $(this).html("Mark as Read");
       }

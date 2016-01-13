@@ -1,28 +1,38 @@
-<%= link_to "Sign Out", logout_path, method: :delete %>
-
-<h2>Add A New Link</h2>
-<% if flash[:errors] %>
-  <div class="errors">
-    <% flash[:errors].each do |message| %>
-      <%= message %>
-    <% end %>
+<div class="well">
+  <div class="btn btn-default btn-sm active" role="button">
+    <%= link_to "Sign Out", logout_path, method: :delete %>
   </div>
-<% end %>
-<%= form_for :link, url: '/links' do |f| %>
-  <%= f.label :url %>:
-  <%= f.text_field :url %><br />
 
-  <%= f.label :title %>:
-  <%= f.text_field :title %><br />
+  <h2>Add A New Link</h2>
+  <% if flash[:errors] %>
+    <div class="errors">
+      <% flash[:errors].each do |message| %>
+        <%= message %>
+      <% end %>
+    </div>
+  <% end %>
+  <%= form_for :link, url: '/links' do |f| %>
+    <div class="form-inline">
+      <div class="form-group">
+        <%= f.label :url %>:
+        <%= f.text_field :url %><br />
+      </div>
 
-  <%= f.submit "Create Link"%>
-<% end %>
+      <div class="form-group">
+        <%= f.label :title %>:
+        <%= f.text_field :title %><br />
+      </div>
+
+      <%= f.submit "Create Link"%>
+    </div>
+  <% end %>
+</div>
 
 <% unless @links.nil? %>
   <% @links.each do |link| %>
-    <div class="link<%= link.id %>">
-      <h3 class="link-title"><%= link.title %><h3>
-      <h5 class="link-url"><%= link.url %></h5>
+    <div class="<%= link.read_status %>" id="link<%= link.id %>">
+      <h3 class="link-title">Title: <%= link.title %><h3>
+      <h5 class="link-url">URL: <%= link.url %></h5>
       <% if link.read_status == "Read" %>
         <button class='btn btn-default btn-sm' value="Unread">Mark as Unread</button>
       <% else %>
