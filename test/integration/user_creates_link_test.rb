@@ -21,7 +21,7 @@ class UserCreatesLinkTest < ActionDispatch::IntegrationTest
     assert Link.count == 1
     assert_equal Link.last.url, "https://google.com"
     assert_equal Link.last.title, "My Search Page"
-    assert_equal Link.last.read_status, false
+    assert_equal Link.last.read_status, "Unread"
   end
 
   test "User unsuccessfully adds link" do

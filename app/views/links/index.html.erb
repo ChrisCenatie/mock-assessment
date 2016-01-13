@@ -1,12 +1,13 @@
-<% if flash[:errors] %>
-  <% flash[:errors].each do |message| %>
-    <%= message %>
-  <% end %>
-<% end %>
-
 <%= link_to "Sign Out", logout_path, method: :delete %>
 
 <h2>Add A New Link</h2>
+<% if flash[:errors] %>
+  <div class="errors">
+    <% flash[:errors].each do |message| %>
+      <%= message %>
+    <% end %>
+  </div>
+<% end %>
 <%= form_for :link, url: '/links' do |f| %>
   <%= f.label :url %>:
   <%= f.text_field :url %><br />
@@ -22,13 +23,11 @@
     <div class="link<%= link.id %>">
       <h3 class="link-title"><%= link.title %><h3>
       <h5 class="link-url"><%= link.url %></h5>
-      <h5>Mark As Read
-        <% if link.read_status %>
-          <input checked="true" class="status-read" type="checkbox" value="read">
-        <% else %>
-          <input type="checkbox" class="status-unread" value="false">
-        <% end %>
-      </h5>
+      <% if link.read_status == "Read" %>
+        <button class='btn btn-default btn-sm' value="Unread">Mark as Unread</button>
+      <% else %>
+        <button class="btn btn-default btn-sm" value="Read">Mark as Read</button>
+      <% end %>
     </div>
   <% end %>
 <% end %>
