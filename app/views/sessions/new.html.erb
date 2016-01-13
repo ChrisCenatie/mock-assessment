@@ -1,16 +1,29 @@
-<%= link_to "Sign Up", new_user_path %>
+<div class="well">
+  <div class="btn btn-default btn-sm active" role="button">
+    <%= link_to "Sign Up", new_user_path %>
+  </div>
 
-<h1>Login</h1>
-<% if flash[:errors] %>
-  <%= flash[:errors] %>
-<% end %>
+  <h1>Login</h1>
 
-<%= form_for(:session, url: login_path) do |f| %>
-  <%= f.label :email %>
-  <%= f.text_field :email %> <br>
+  <% if flash[:errors] %>
+  <div class="errors">
+    <%= flash[:errors] %>
+  </div>
+  <% end %>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %> <br>
+  <%= form_for(:session, url: login_path) do |f| %>
+  <div class="form-inline">
+    <div class="form-group">
+    <%= f.label :email %>
+    <%= f.text_field :email %> <br>
+    </div>
 
-  <%= f.submit "Login" %>
-<% end %>
+    <div class="form-group">
+    <%= f.label :password %>
+    <%= f.password_field :password %> <br>
+    </div>
+
+    <%= f.submit "Login" %>
+  </div>
+  <% end %>
+</div>
