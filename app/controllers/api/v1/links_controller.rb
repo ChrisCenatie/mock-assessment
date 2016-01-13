@@ -3,7 +3,11 @@ class Api::V1::LinksController < ApplicationController
   respond_to :json
 
   def update
-    respond_with Link.update(params[:id], link_params)
+    if current_user.links.include?(Link.find(params[:id]))
+      respond_with Link.update(params[:id], link_params)
+    else
+      respond_with status: :unauthorized
+    end
   end
 
   private
