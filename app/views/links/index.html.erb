@@ -35,6 +35,15 @@
       <%= f.submit "Create Link"%>
     </div>
   <% end %>
+
+  <div class="filters">
+    <h3>Filter Links By Status</h3>
+    <select class="input-sm" id="filter-status">
+      <option value="all">Show All</option>
+      <option value="read">Read Status</option>
+      <option value="unread">Unread Status</option>
+    </select>
+  </div>
 </div>
 
 <% unless @links.nil? %>
@@ -47,9 +56,9 @@
       <% else %>
         <button class="btn btn-default btn-sm" value="Read">Mark as Read</button>
       <% end %>
-    </div>
     <span class="btn btn-default btn-sm">
       <%= link_to "Edit Link", link_path(link) %>
     </span>
+    </div>
   <% end %>
 <% end %>
