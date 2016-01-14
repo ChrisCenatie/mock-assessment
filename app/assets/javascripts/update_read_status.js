@@ -22,7 +22,7 @@ function updateLink() {
         $(this).html("Mark as Read");
       }
     }.bind(this),
-    error: function(){
+    error: function(response){
       console.log(response.body);
     }
   });
