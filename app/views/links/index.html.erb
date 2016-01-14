@@ -43,14 +43,17 @@
       <option value="read">Read Status</option>
       <option value="unread">Unread Status</option>
     </select>
+
+    <h3>Search By Term</h3>
+    <input id="search-terms" type="text" class="form-control input-md" placeholder="Search is case Sensistive">
   </div>
 </div>
 
 <% unless @links.nil? %>
   <% @links.each do |link| %>
-    <div class="<%= link.read_status %>" id="link<%= link.id %>">
+    <div class="links <%= link.read_status %>" id="link<%= link.id %>">
       <h3 class="link-title">Title: <%= link.title %><h3>
-      <h5 class="link-url">URL: <%= link.url %></h5>
+      <h5 class="link-url">URL: <a href="<%= link.url %>"><%= link.url %></a></h5>
       <% if link.read_status == "Read" %>
         <button class='btn btn-default btn-sm' value="Unread">Mark as Unread</button>
       <% else %>
